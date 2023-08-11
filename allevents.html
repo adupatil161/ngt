@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>jQuery Events</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <style>
+    #box {
+      width: 100px;
+      height: 100px;
+      background-color: lightblue;
+      margin: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div id="box">Hover over me</div>
+  <input type="text" id="textInput">
+  <button id="focusBtn">Focus Input</button>
+  <button id="blurBtn">Blur Input</button>
+
+  <script>
+    // Click Event
+    $("#box").click(function() {
+      alert("Box Clicked!");
+    });
+
+    // Double Click Event
+    $("#box").dblclick(function() {
+      alert("Box Double Clicked!");
+    });
+
+    // Mouse Enter Event
+    $("#box").mouseenter(function() {
+      $(this).css("background-color", "lightgreen");
+    });
+
+    // Mouse Leave Event
+    $("#box").mouseleave(function() {
+      $(this).css("background-color", "lightblue");
+    });
+
+    // Hover Event (mouseenter + mouseleave combined)
+    $("#box").hover(
+      function() {
+        $(this).css("background-color", "lightpink");
+      },
+      function() {
+        $(this).css("background-color", "lightblue");
+      }
+    );
+
+    // On Event (Mouse Down + Mouse Up)
+    $("#box").on("mousedown", function() {
+      $(this).css("background-color", "orange");
+    });
+
+    $("#box").on("mouseup", function() {
+      $(this).css("background-color", "lightblue");
+    });
+
+    // Focus Event
+    $("#focusBtn").click(function() {
+      $("#textInput").focus();
+    });
+
+    // Blur Event
+    $("#blurBtn").click(function() {
+      $("#textInput").blur();
+    });
+
+    // Change text color on focus
+    $("#textInput").focus(function() {
+      $(this).css("color", "red");
+    });
+
+    // Reset text color on blur
+    $("#textInput").blur(function() {
+      $(this).css("color", "");
+    });
+  </script>
+</body>
+</html>
