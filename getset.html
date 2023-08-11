@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+<head>
+<title>The jQuery Example</title>
+<script src="https://www.tutorialspoint.com/jquery/jquery-3.6.0.js"></script>
+<script>
+   $(document).ready(function() {
+      $("#b1").click(function(){
+         alert($("#name").val());
+      });
+      $("#b2").click(function(){
+         alert($("#class").val());
+      });
+      $("#text").click(function(){
+         $("p").text("The quick <b>brown fox</b> jumps over the <b>lazy dog</b>");
+      });
+      $("#html").click(function(){
+         $("p").html("The quick <b>brown fox</b> jumps over the <b>lazy dog</b>");
+      });
+   });
+</script>
+</head>
+<body>
+   <p>Name: <input type="text" id="name" value="Zara Ali"/></p>
+   <p>Class: <input type="text" id="class" value="Class 12th"/></p>
+   
+   <button id="b1">Get Name</button>
+   <button id="b2">Get Class</button>
+    <p>Click on any of the two buttons to see the result</p>
+   <button id="text">Set Text</button>
+   <button id="html">Set HTML</button>
+</body>
+</html>
