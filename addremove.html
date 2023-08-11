@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>jQuery Manipulation</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+  <div id="container">
+    <p>This is a paragraph.</p>
+  </div>
+
+  <button id="appendBtn">Append Text</button>
+  <button id="prependBtn">Prepend Text</button>
+  <button id="beforeBtn">Insert Before</button>
+  <button id="afterBtn">Insert After</button>
+  <button id="removeBtn">Remove Paragraph</button>
+  <button id="emptyBtn">Empty Container</button>
+
+  <script>
+    // Append Text
+    $("#appendBtn").click(function() {
+      $("#container").append("<p>Appended paragraph.</p>");
+    });
+
+    // Prepend Text
+    $("#prependBtn").click(function() {
+      $("#container").prepend("<p>Prepended paragraph.</p>");
+    });
+
+    // Insert Before
+    $("#beforeBtn").click(function() {
+      $("<p>Inserted before.</p>").insertBefore("#container");
+    });
+
+    // Insert After
+    $("#afterBtn").click(function() {
+      $("<p>Inserted after.</p>").insertAfter("#container");
+    });
+
+    // Remove Paragraph
+    $("#removeBtn").click(function() {
+      $("#container p").remove();
+    });
+
+    // Empty Container
+    $("#emptyBtn").click(function() {
+      $("#container").empty();
+    });
+  </script>
+</body>
+</html>
