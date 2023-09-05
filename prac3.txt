@@ -1,0 +1,79 @@
+show dbs
+admin    0.000GB
+config   0.000GB
+local    0.000GB
+new      0.000GB
+product  0.000GB
+travel   0.000GB
+> use product
+switched to db product
+> show collections
+aditi
+helo
+prod
+users
+> db.aditi.find().pretty()
+> db.aditi.find().pretty().
+... show collections
+2023-09-05T10:46:27.987+0530 E QUERY    [js] SyntaxError: missing ; before statement @(shell):2:5
+>
+> db.prod.find()
+> db.users.find()
+{ "_id" : ObjectId("64f15805642baf53fcf862da"), "name" : "aditi", "age" : 19 }
+{ "_id" : ObjectId("64f15850642baf53fcf862db"), "name" : "omkar", "age" : 20 }
+{ "_id" : ObjectId("64f15942642baf53fcf862dc"), "name" : "helllo", "age" : 19, "hobby" : "dancing" }
+{ "_id" : ObjectId("64f15d40642baf53fcf862dd"), "name" : "aryaa", "age" : 15, "hobby" : "singing" }
+> db.users.insert({name:"sakshi", age:20})
+WriteResult({ "nInserted" : 1 })
+> db.users.find()
+{ "_id" : ObjectId("64f15805642baf53fcf862da"), "name" : "aditi", "age" : 19 }
+{ "_id" : ObjectId("64f15850642baf53fcf862db"), "name" : "omkar", "age" : 20 }
+{ "_id" : ObjectId("64f15942642baf53fcf862dc"), "name" : "helllo", "age" : 19, "hobby" : "dancing" }
+{ "_id" : ObjectId("64f15d40642baf53fcf862dd"), "name" : "aryaa", "age" : 15, "hobby" : "singing" }
+{ "_id" : ObjectId("64f6bb81b4c5cb0a4b965fdf"), "name" : "sakshi", "age" : 20 }
+> show dbs;
+admin    0.000GB
+config   0.000GB
+local    0.000GB
+new      0.000GB
+product  0.000GB
+travel   0.000GB
+> show collections
+aditi
+helo
+prod
+users
+> db.users.find({"name":"sakshi"})
+{ "_id" : ObjectId("64f6bb81b4c5cb0a4b965fdf"), "name" : "sakshi", "age" : 20 }
+> db.users.find({"age":19})
+{ "_id" : ObjectId("64f15805642baf53fcf862da"), "name" : "aditi", "age" : 19 }
+{ "_id" : ObjectId("64f15942642baf53fcf862dc"), "name" : "helllo", "age" : 19, "hobby" : "dancing" }
+> db.users.update({"name":"sakshi"},{$set:{"country":"india"}})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.users.find()
+{ "_id" : ObjectId("64f15805642baf53fcf862da"), "name" : "aditi", "age" : 19 }
+{ "_id" : ObjectId("64f15850642baf53fcf862db"), "name" : "omkar", "age" : 20 }
+{ "_id" : ObjectId("64f15942642baf53fcf862dc"), "name" : "helllo", "age" : 19, "hobby" : "dancing" }
+{ "_id" : ObjectId("64f15d40642baf53fcf862dd"), "name" : "aryaa", "age" : 15, "hobby" : "singing" }
+{ "_id" : ObjectId("64f6bb81b4c5cb0a4b965fdf"), "name" : "sakshi", "age" : 20, "country" : "india" }
+>  db.users.update({"name":"sakshi"},{$set:{"hobby":"cooking"}})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.users.find()
+{ "_id" : ObjectId("64f15805642baf53fcf862da"), "name" : "aditi", "age" : 19 }
+{ "_id" : ObjectId("64f15850642baf53fcf862db"), "name" : "omkar", "age" : 20 }
+{ "_id" : ObjectId("64f15942642baf53fcf862dc"), "name" : "helllo", "age" : 19, "hobby" : "dancing" }
+{ "_id" : ObjectId("64f15d40642baf53fcf862dd"), "name" : "aryaa", "age" : 15, "hobby" : "singing" }
+{ "_id" : ObjectId("64f6bb81b4c5cb0a4b965fdf"), "name" : "sakshi", "age" : 20, "country" : "india", "hobby" : "cooking" }
+> db.users.remove({"name":"aditi"})
+WriteResult({ "nRemoved" : 1 })
+> db.users.find()
+{ "_id" : ObjectId("64f15850642baf53fcf862db"), "name" : "omkar", "age" : 20 }
+{ "_id" : ObjectId("64f15942642baf53fcf862dc"), "name" : "helllo", "age" : 19, "hobby" : "dancing" }
+{ "_id" : ObjectId("64f15d40642baf53fcf862dd"), "name" : "aryaa", "age" : 15, "hobby" : "singing" }
+{ "_id" : ObjectId("64f6bb81b4c5cb0a4b965fdf"), "name" : "sakshi", "age" : 20, "country" : "india", "hobby" : "cooking" }
+>
+
+
+
+
+
