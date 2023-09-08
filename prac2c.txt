@@ -1,0 +1,162 @@
+db.usersinfo.insert({"user_id":01,"name":"aditipatil","email":"aditipatil1603@gmail.com","mobile_no":1234567890,"password":123})
+WriteResult({ "nInserted" : 1 })
+
+> db.usersinfo.insert({"user_id":02,"name":"aryaapatil","email":"aryaa@gmail.com","mobile_no":12456780000,"password":234})
+WriteResult({ "nInserted" : 1 })
+> db.userinfo.find()
+>
+> db.usersinfo.find()
+{ "_id" : ObjectId("64fa8bf66d22084d2303072c"), "user_id" : 1, "name" : "aditipatil", "email" : "aditipatil1603@gmail.com", "mobile_no" : 1234567890, "password" : 123 }
+{ "_id" : ObjectId("64fa8c766d22084d2303072d"), "user_id" : 2, "name" : "aryaapatil", "email" : "aryaa@gmail.com", "mobile_no" : 12456780000, "password" : 234 }
+> db.usersinfo.insert({"user_id":03,"name":"gauriplande","email":"gauri12@gmail.com","mobile_no":1240012389,"password":100})
+WriteResult({ "nInserted" : 1 })
+> db.admininfo.insert({"admin_id":001,"name":"amit singh","password":900})
+WriteResult({ "nInserted" : 1 })
+> db.hotels.insert({"hotel_id":101,"name":"sadguru","location":"ahemdabad","price":3000})
+WriteResult({ "nInserted" : 1 })
+> db.hotels.insert({"hotel_id":102,"name":"rajput residency","location":"punjab","price":2500})
+WriteResult({ "nInserted" : 1 })
+> db.hotels.insert({"hotel_id":103,"name":"konark stay","location":"delhi","price":1890})
+WriteResult({ "nInserted" : 1 })
+>WriteResult({ "nInserted" : 1 })
+> db.usersinfo.find()
+{ "_id" : ObjectId("64fa8bf66d22084d2303072c"), "user_id" : 1, "name" : "aditipatil", "email" : "aditipatil1603@gmail.com", "mobile_no" : 1234567890, "password" : 123 }
+{ "_id" : ObjectId("64fa8c766d22084d2303072d"), "user_id" : 2, "name" : "aryaapatil", "email" : "aryaa@gmail.com", "mobile_no" : 12456780000, "password" : 234 }
+{ "_id" : ObjectId("64fa8d146d22084d2303072e"), "user_id" : 3, "name" : "gauriplande", "email" : "gauri12@gmail.com", "mobile_no" : 1240012389, "password" : 100 }
+> db.usersinfo.update({"name":"aditipatil"},{$set:{"email":"adipatil16@gmail.com"}})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.usersinfo.remove({"user_id":2})
+WriteResult({ "nRemoved" : 1 })
+> db.usersinfo.find()
+{ "_id" : ObjectId("64fa8bf66d22084d2303072c"), "user_id" : 1, "name" : "aditipatil", "email" : "adipatil16@gmail.com", "mobile_no" : 1234567890, "password" : 123 }
+{ "_id" : ObjectId("64fa8d146d22084d2303072e"), "user_id" : 3, "name" : "gauriplande", "email" : "gauri12@gmail.com", "mobile_no" : 1240012389, "password" : 100 }
+> db.usersinfo.find().limit(1)
+{ "_id" : ObjectId("64fa8bf66d22084d2303072c"), "user_id" : 1, "name" : "aditipatil", "email" : "adipatil16@gmail.com", "mobile_no" : 1234567890, "password" : 123 }
+> db.admininfo.findOne()
+{
+        "_id" : ObjectId("64fa8dd26d22084d2303072f"),
+        "admin_id" : 1,
+        "name" : "amit singh",
+        "password" : 900
+}
+> db.usersinfo.find()
+{ "_id" : ObjectId("64fa8bf66d22084d2303072c"), "user_id" : 1, "name" : "aditipatil", "email" : "adipatil16@gmail.com", "mobile_no" : 1234567890, "password" : 123 }
+{ "_id" : ObjectId("64fa8d146d22084d2303072e"), "user_id" : 3, "name" : "gauriplande", "email" : "gauri12@gmail.com", "mobile_no" : 1240012389, "password" : 100 }
+> db.usersinfo.findOne()
+{
+        "_id" : ObjectId("64fa8bf66d22084d2303072c"),
+        "user_id" : 1,
+        "name" : "aditipatil",
+        "email" : "adipatil16@gmail.com",
+        "mobile_no" : 1234567890,
+        "password" : 123
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
