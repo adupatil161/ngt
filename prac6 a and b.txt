@@ -1,0 +1,86 @@
+//in mongo cmd
+use today
+switched to db today
+today> db.stu1.insert({"name":"aditi"})
+DeprecationWarning: Collection.insert() is deprecated. Use insertOne, insertMany, or bulkWrite.
+{
+  acknowledged: true,
+  insertedIds: { '0': ObjectId("65032aef0a4a737c71b9fc7f") }
+}
+today> show collections
+stu1
+today> db.dropDatabase()
+{ ok: 1, dropped: 'today' }
+today> show dbs;
+aditi    48.00 KiB
+admin    40.00 KiB
+config   72.00 KiB
+local    84.00 KiB
+product  80.00 KiB
+today> db.dropDatabase()
+{ ok: 1, dropped: 'today' }
+today> show dbs
+aditi     60.00 KiB
+admin     40.00 KiB
+config   108.00 KiB
+local     84.00 KiB
+product   80.00 KiB
+today     40.00 KiB
+
+
+
+//in new cmd
+C:\Users\aditi>cd C:\backup
+
+C:\backup>mongodump
+2023-09-14T21:18:17.779+0530    writing admin.system.version to dump\admin\system.version.bson
+2023-09-14T21:18:17.783+0530    done dumping admin.system.version (1 document)
+2023-09-14T21:18:17.783+0530    writing today.stu1 to dump\today\stu1.bson
+2023-09-14T21:18:17.783+0530    writing product.prod to dump\product\prod.bson
+2023-09-14T21:18:17.784+0530    writing aditi.names to dump\aditi\names.bson
+2023-09-14T21:18:17.784+0530    writing product.users to dump\product\users.bson
+2023-09-14T21:18:17.785+0530    done dumping today.stu1 (1 document)
+2023-09-14T21:18:17.786+0530    done dumping product.prod (0 documents)
+2023-09-14T21:18:17.788+0530    done dumping aditi.names (3 documents)
+2023-09-14T21:18:17.790+0530    done dumping product.users (6 documents)
+
+C:\backup>mongorestore
+2023-09-14T21:24:49.868+0530    using default 'dump' directory
+2023-09-14T21:24:49.870+0530    preparing collections to restore from
+2023-09-14T21:24:49.872+0530    reading metadata for aditi.names from dump\aditi\names.metadata.json
+2023-09-14T21:24:49.872+0530    reading metadata for product.prod from dump\product\prod.metadata.json
+2023-09-14T21:24:49.872+0530    reading metadata for product.users from dump\product\users.metadata.json
+2023-09-14T21:24:49.873+0530    reading metadata for today.stu1 from dump\today\stu1.metadata.json
+2023-09-14T21:24:49.874+0530    restoring to existing collection product.users without dropping
+2023-09-14T21:24:49.874+0530    restoring product.users from dump\product\users.bson
+2023-09-14T21:24:49.874+0530    restoring to existing collection aditi.names without dropping
+2023-09-14T21:24:49.876+0530    restoring to existing collection product.prod without dropping
+2023-09-14T21:24:49.876+0530    restoring aditi.names from dump\aditi\names.bson
+2023-09-14T21:24:49.876+0530    restoring product.prod from dump\product\prod.bson
+2023-09-14T21:24:49.882+0530    restoring today.stu1 from dump\today\stu1.bson
+2023-09-14T21:24:49.885+0530    continuing through error: E11000 duplicate key error collection: product.users index: _id_ dup key: { _id: ObjectId('64aff96aa0b8d383355dc0a9') }
+2023-09-14T21:24:49.885+0530    continuing through error: E11000 duplicate key error collection: product.users index: _id_ dup key: { _id: ObjectId('64aff978a0b8d383355dc0aa') }
+2023-09-14T21:24:49.885+0530    continuing through error: E11000 duplicate key error collection: product.users index: _id_ dup key: { _id: ObjectId('64affa11a0b8d383355dc0ac') }
+2023-09-14T21:24:49.885+0530    continuing through error: E11000 duplicate key error collection: product.users index: _id_ dup key: { _id: ObjectId('64affc31a0b8d383355dc0ad') }
+2023-09-14T21:24:49.885+0530    continuing through error: E11000 duplicate key error collection: product.users index: _id_ dup key: { _id: ObjectId('64affc31a0b8d383355dc0ae') }
+2023-09-14T21:24:49.885+0530    continuing through error: E11000 duplicate key error collection: product.users index: _id_ dup key: { _id: ObjectId('64b002baa0b8d383355dc0af') }
+2023-09-14T21:24:49.886+0530    continuing through error: E11000 duplicate key error collection: aditi.names index: _id_ dup key: { _id: ObjectId('64f9e33bda496782aaaf74fe') }
+2023-09-14T21:24:49.886+0530    continuing through error: E11000 duplicate key error collection: aditi.names index: _id_ dup key: { _id: ObjectId('64f9e342da496782aaaf74ff') }
+2023-09-14T21:24:49.886+0530    continuing through error: E11000 duplicate key error collection: aditi.names index: _id_ dup key: { _id: ObjectId('64f9e348da496782aaaf7500') }
+2023-09-14T21:24:49.886+0530    finished restoring product.users (0 documents, 6 failures)
+2023-09-14T21:24:49.886+0530    finished restoring aditi.names (0 documents, 3 failures)
+2023-09-14T21:24:49.887+0530    finished restoring product.prod (0 documents, 0 failures)
+2023-09-14T21:24:49.895+0530    finished restoring today.stu1 (1 document, 0 failures)
+2023-09-14T21:24:49.895+0530    no indexes to restore for collection today.stu1
+2023-09-14T21:24:49.895+0530    no indexes to restore for collection aditi.names
+2023-09-14T21:24:49.895+0530    no indexes to restore for collection product.users
+2023-09-14T21:24:49.895+0530    no indexes to restore for collection product.prod
+2023-09-14T21:24:49.895+0530    1 document(s) restored successfully. 9 document(s) failed to restore.
+
+C:\backup>cd C:\backupnew
+
+C:\backupnew>mongodump  --db today --collection stu1
+2023-09-14T21:28:26.941+0530    writing today.stu1 to dump\today\stu1.bson
+2023-09-14T21:28:26.943+0530    done dumping today.stu1 (1 document)
+
+
