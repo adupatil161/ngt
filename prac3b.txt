@@ -1,0 +1,3 @@
+C:\Program Files\MongoDB\Server\3.6\bin>mongoexport --host localhost --db travel --collection customers --type json --out C:\Users\NGT\Desktop\jsonexport\newexport.json
+2023-09-15T10:00:35.988+0530    connected to: localhost
+2023-09-15T10:00:35.991+0530    exported 7 records
