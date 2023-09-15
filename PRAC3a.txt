@@ -1,0 +1,92 @@
+in newimport.json
+ [   {
+         "id":"1",
+         "name":"aditi",
+         "hobby":"dancing"
+            },
+            {
+               "id":"2",
+               "name":"nandana",
+               "hobby":"singing"
+            }
+   ]
+
+
+
+
+
+
+CMD
+C:\Users\NGT>cd C:\Users\NGT\Desktop\json import
+
+C:\Users\NGT\Desktop\json import>mongoimport "C:\Users\NGT\Desktop\json import\newimport.json" --db travel --collection customers --jsonArray
+2023-09-15T09:07:58.296+0530    connected to: localhost
+2023-09-15T09:07:58.376+0530    imported 2 documents
+
+
+//output
+ db.customers.find().pretty();
+{
+        "_id" : ObjectId("64f1668c642baf53fcf862de"),
+        "name" : "aditi",
+        "mobile_no" : 9324128129,
+        "age" : 20
+}
+{
+        "_id" : ObjectId("64f166c4642baf53fcf862df"),
+        "name" : "aryaa",
+        "mobile_no" : 9082262212,
+        "age" : 26
+}
+{
+        "_id" : ObjectId("64f16700642baf53fcf862e0"),
+        "name" : "anushka",
+        "mobile_no" : 9090909090,
+        "age" : 21
+}
+{
+        "_id" : ObjectId("6503d19687e240188b9841f1"),
+        "id" : "1",
+        "name" : "aditi",
+        "hobby" : "dancing"
+}
+{
+        "_id" : ObjectId("6503d19687e240188b9841f2"),
+        "id" : "2",
+        "name" : "nandana",
+        "hobby" : "singing"
+}
+>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
