@@ -1,0 +1,42 @@
+ use product
+switched to db product
+product> db.createCollection("prods")
+{ ok: 1 }
+product> db.prods.insert({"_id":1,"name":"soap","price":220})
+{ acknowledged: true, insertedIds: { '0': 1 } }
+product> db.prods.insert({"_id":2,"name":"handwash","price":200})
+{ acknowledged: true, insertedIds: { '0': 2 } }
+product> db.prods.insert({"_id":3,"name":"shampoo","price":100})
+{ acknowledged: true, insertedIds: { '0': 3 } }
+
+
+//sum
+product> db.prods.aggregate([{$group:{_id:null,total:{$sum:"$price"}}}])
+[ { _id: null, total: 620 } ]
+
+
+
+
+
+ db.prods.find()
+[
+  { _id: 1, name: 'soap', price: 220 },
+  { _id: 2, name: 'handwash', price: 200 },
+  { _id: 3, name: 'shampoo', price: 100 },
+  { _id: 4, name: 'shampoo', price: 100, quantity: 3 },
+  { _id: 5, name: 'shampoo', price: 100, quantity: 3 }
+]
+
+
+//avg
+product> db.prods.aggregate([{$group:{_id:null,average:{$avg:"$price"}}}])
+[ { _id: null, average: 144 } ]
+
+//min
+product> db.prods.aggregate([{$group:{_id:null,minimumvalue:{$min:"$price"}}}])
+[ { _id: null, minimumvalue: 100 } ]
+
+
+//max
+product> db.prods.aggregate([{$group:{_id:null,maximumvalue:{$max:"$price"}}}])
+[ { _id: null, maximumvalue: 220 } ]
