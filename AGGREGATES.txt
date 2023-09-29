@@ -150,23 +150,14 @@ product> db.users.aggregate([{$group:{_id:"$age",hobbies:{$push:"$hobby"}}}])
   { _id: 45, hobbies: [] }
 ]
 
-6]FINDproduct> db.users.aggregate([{$group:{_id:null ,allhobbies:{$push:"$hobby"}}}])
+6]FIND ALL HOBBIES
+product> db.users.aggregate([{$group:{_id:null ,allhobbies:{$push:"$hobby"}}}])
 [
   {
     _id: null,
     allhobbies: [ 'drawing', 'dancing', 'painting', 'dancing' ]
   }
-] GENDER PER AGE GROUP
-product> db.users.aggregate([{$group:{_id:"$age",gender:{$push:"$gender"}}}])
-[
-  { _id: 21, gender: [ 'female' ] },
-  { _id: 20, gender: [] },
-  { _id: 16, gender: [] },
-  { _id: 22, gender: [ 'female' ] },
-  { _id: 33, gender: [ 'female' ] },
-  { _id: 45, gender: [ 'female' ] }
-]
-
+] 
 
 7]FIND HOBBIES PER NAME AND DISPLAY SEPERATE DOCUMENT OF EACH USER WITH DIFFERENT HOBBY.
 
@@ -266,5 +257,17 @@ product> db.users.aggregate([ {$group:{_id:null, firstdoc:{$first:"$$ROOT"}, las
       age: 21
     }
   }
+]
+
+
+ 16]FIND GENDER PER AGE GROUP
+product> db.users.aggregate([{$group:{_id:"$age",gender:{$push:"$gender"}}}])
+[
+  { _id: 21, gender: [ 'female' ] },
+  { _id: 20, gender: [] },
+  { _id: 16, gender: [] },
+  { _id: 22, gender: [ 'female' ] },
+  { _id: 33, gender: [ 'female' ] },
+  { _id: 45, gender: [ 'female' ] }
 ]
 
