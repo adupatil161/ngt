@@ -1,0 +1,270 @@
+1]display the record where gender is female.
+
+product> db.users.aggregate([{$match :{gender:"female"}}])
+[
+  {
+    _id: ObjectId("6512e740a170b09a1d855797"),
+    name: 'geeta',
+    age: 45,
+    gender: 'female',
+    country: 'india'
+  },
+  {
+    _id: ObjectId("6512e75fa170b09a1d855798"),
+    name: 'anushka',
+    age: 21,
+    gender: 'female',
+    country: 'india'
+  },
+  {
+    _id: ObjectId("6512ea9aa170b09a1d85579b"),
+    name: 'lisha',
+    age: 33,
+    gender: 'female'
+  },
+  {
+    _id: ObjectId("6512eac5a170b09a1d85579c"),
+    name: 'pia',
+    age: 22,
+    gender: 'female'
+  }
+]
+
+
+2]group users by age
+
+product> db.users.aggregate([{$group:{_id:"$age"}}])
+[
+  { _id: 45 },
+  { _id: 16 },
+  { _id: 21 },
+  { _id: 20 },
+  { _id: 22 },
+  { _id: 33 }
+]
+
+3]group users by age and show all users name per age group.
+product> db.users.aggregate([{$group:{_id:"$age" ,names:{$push:"$name"}}}])
+[
+  { _id: 20, names: [ 'aditi', 'mahesh' ] },
+  { _id: 22, names: [ 'pia' ] },
+  { _id: 33, names: [ 'lisha' ] },
+  { _id: 45, names: [ 'geeta', 'vaibhav' ] },
+  { _id: 16, names: [ 'aryaa' ] },
+  { _id: 21, names: [ 'anushka' ] }
+]
+
+4]GROUP USERS BY AGE AND ALSO DISPLAY COMPLETE DOCUMENT PER AGE GROUP.
+
+product> db.users.aggregate([{$group:{_id:"$age",wholedocument:{$push:"$$ROOT"}}}])
+[
+  {
+    _id: 20,
+    wholedocument: [
+      {
+        _id: ObjectId("6512e6cba170b09a1d855794"),
+        name: 'aditi',
+        age: 20,
+        hobby: 'drawing'
+      },
+      {
+        _id: ObjectId("6512e6eba170b09a1d855795"),
+        name: 'mahesh',
+        age: 20,
+        hobby: 'dancing'
+      }
+    ]
+  },
+  {
+    _id: 22,
+    wholedocument: [
+      {
+        _id: ObjectId("6512eac5a170b09a1d85579c"),
+        name: 'pia',
+        age: 22,
+        gender: 'female'
+      }
+    ]
+  },
+  {
+    _id: 33,
+    wholedocument: [
+      {
+        _id: ObjectId("6512ea9aa170b09a1d85579b"),
+        name: 'lisha',
+        age: 33,
+        gender: 'female'
+      }
+    ]
+  },
+  {
+    _id: 45,
+    wholedocument: [
+      {
+        _id: ObjectId("6512e740a170b09a1d855797"),
+        name: 'geeta',
+        age: 45,
+        gender: 'female',
+        country: 'india'
+      },
+      {
+        _id: ObjectId("65165acd5367e06c5462f4c7"),
+        name: 'vaibhav',
+        age: 45
+      }
+    ]
+  },
+  {
+    _id: 16,
+    wholedocument: [
+      {
+        _id: ObjectId("6512e705a170b09a1d855796"),
+        name: 'aryaa',
+        age: 16,
+        hobby: 'painting'
+      }
+    ]
+  },
+  {
+    _id: 21,
+    wholedocument: [
+      {
+        _id: ObjectId("6512e75fa170b09a1d855798"),
+        name: 'anushka',
+        age: 21,
+        gender: 'female',
+        country: 'india'
+      }
+    ]
+  }
+]
+
+5]FIND HOBBIES PER AGE GROUP
+product> db.users.aggregate([{$group:{_id:"$age",hobbies:{$push:"$hobby"}}}])
+[
+  { _id: 21, hobbies: [] },
+  { _id: 20, hobbies: [ 'drawing', 'dancing' ] },
+  { _id: 16, hobbies: [ 'painting' ] },
+  { _id: 22, hobbies: [] },
+  { _id: 33, hobbies: [] },
+  { _id: 45, hobbies: [] }
+]
+
+6]FINDproduct> db.users.aggregate([{$group:{_id:null ,allhobbies:{$push:"$hobby"}}}])
+[
+  {
+    _id: null,
+    allhobbies: [ 'drawing', 'dancing', 'painting', 'dancing' ]
+  }
+] GENDER PER AGE GROUP
+product> db.users.aggregate([{$group:{_id:"$age",gender:{$push:"$gender"}}}])
+[
+  { _id: 21, gender: [ 'female' ] },
+  { _id: 20, gender: [] },
+  { _id: 16, gender: [] },
+  { _id: 22, gender: [ 'female' ] },
+  { _id: 33, gender: [ 'female' ] },
+  { _id: 45, gender: [ 'female' ] }
+]
+
+
+7]FIND HOBBIES PER NAME AND DISPLAY SEPERATE DOCUMENT OF EACH USER WITH DIFFERENT HOBBY.
+
+product> db.users.aggregate([{$unwind:"$hobby"},{$group:{_id:"$name",hobbies:{$push:"$hobby"}}}])
+[
+  { _id: 'aryaa', hobbies: [ 'painting' ] },
+  { _id: 'aditi', hobbies: [ 'drawing' ] },
+  { _id: 'mahesh', hobbies: [ 'dancing' ] }
+]
+
+8]FIND NUMBER OF USERS PER HOBBY.
+product> db.users.aggregate([{$unwind:"$hobby"},{$group:{_id:"$hobby",count:{$sum:1}}}])
+[
+  { _id: 'dancing', count: 2 },
+  { _id: 'painting', count: 1 },
+  { _id: 'drawing', count: 1 }
+]
+
+9]FIND AVERAGE AGE OF ALL USERS.
+product> db.users.aggregate([{$group:{_id:null,average:{$avg:"$age"}}}])
+[ { _id: null, average: 27.75 } ]
+
+
+10]LIST ALL HOBBIES WITHOUT DUPLICATION
+
+product> db.users.aggregate([{$group:{_id:null,allhobbies:{$addToSet:"$hobby"}}}])
+[ { _id: null, allhobbies: [ 'painting', 'drawing', 'dancing' ] } ]
+
+11]LIST ALL HOBBIES WITH DUPLICATION
+product> db.users.aggregate([{$group:{_id:null ,allhobbies:{$push:"$hobby"}}}])
+[
+  {
+    _id: null,
+    allhobbies: [ 'drawing', 'dancing', 'painting', 'dancing' ]
+  }
+]
+
+11]FIND TOTAL NUMBER OF HOBBIES FOR ALL USERS IN COLLECTION''
+
+product> db.users.aggregate([{$unwind:"$hobby"},{$group:{_id:null,count:{$sum:1}}}])
+[ { _id: null, count: 4 } ]
+
+
+12]GIVE A COUNT PER AGE OF FEMALE USER
+
+product> db.users.aggregate([{$match:{gender:"female"}},{$group:{_id:"$age",totalcountperage:{$sum:1}}}])
+[
+  { _id: 33, totalcountperage: 1 },
+  { _id: 45, totalcountperage: 1 },
+  { _id: 21, totalcountperage: 2 },
+  { _id: 22, totalcountperage: 1 }
+]
+
+13]GIVE TOTAL COUNT OF FEMALE USERS AND SORT THEM IN ASCENDING ORDER BY COUNT
+
+
+product> db.users.aggregate([ { $match: { gender: "female" } }, { $group: { _id: "$age", totalcountperage: { $sum: 1 } } }, { $sort: { totalcountperage: 1 } }])
+[
+  { _id: 22, totalcountperage: 1 },
+  { _id: 45, totalcountperage: 1 },
+  { _id: 33, totalcountperage: 1 },
+  { _id: 21, totalcountperage: 2 }
+]
+
+
+14]GIVE TOTAL COUNT OF FEMALE USERS AND SORT THEM IN DESCENDING  ORDER BY COUNT
+
+
+product> db.users.aggregate([
+... {$match:{gender:"female"}},
+... {$group:{_id:"$age",totalcountperage:{$sum:1}}},
+... {$sort:{totalcountperage:-1}}
+... ])
+[
+  { _id: 21, totalcountperage: 2 },
+  { _id: 22, totalcountperage: 1 },
+  { _id: 45, totalcountperage: 1 },
+  { _id: 33, totalcountperage: 1 }
+]
+
+15]FIND THE FIRST AND LAST DOCUMENT WITHIN COLLECTION
+
+product> db.users.aggregate([ {$group:{_id:null, firstdoc:{$first:"$$ROOT"}, lastdoc:{$last:"$$ROOT"} }}])
+[
+  {
+    _id: null,
+    firstdoc: {
+      _id: ObjectId("6512e6cba170b09a1d855794"),
+      name: 'aditi',
+      age: 20,
+      hobby: 'drawing'
+    },
+    lastdoc: {
+      _id: ObjectId("651669605367e06c5462f4c9"),
+      name: 'teju',
+      gender: 'female',
+      age: 21
+    }
+  }
+]
+
