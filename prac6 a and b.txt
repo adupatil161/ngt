@@ -77,10 +77,29 @@ C:\backup>mongorestore
 2023-09-14T21:24:49.895+0530    no indexes to restore for collection product.prod
 2023-09-14T21:24:49.895+0530    1 document(s) restored successfully. 9 document(s) failed to restore.
 
+
+
+
+//for backing up single collection
 C:\backup>cd C:\backupnew
 
 C:\backupnew>mongodump  --db today --collection stu1
 2023-09-14T21:28:26.941+0530    writing today.stu1 to dump\today\stu1.bson
 2023-09-14T21:28:26.943+0530    done dumping today.stu1 (1 document)
+
+//for restoring single database
+>mongorestore --db product "dump\product"
+
+
+//for restoring single collection
+>mongorestore --db product --collection prods "C:\B2\dump\product\prods.bson"
+
+
+
+//backup of  single database
+C:\B3>mongodump -d today --out singleDoc
+2023-09-29T09:07:55.725+0530    writing today.today1 to singleDoc\today\today1.bson
+2023-09-29T09:07:55.730+0530    done dumping today.today1 (4 documents)
+
 
 
