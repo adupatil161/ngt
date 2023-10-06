@@ -1,0 +1,35 @@
+from pymongo import MongoClient
+client=MongoClient('localhost',27017)
+db=client.travel
+collection=db.customer
+print(collection.find_one())
+
+
+
+
+///////////////////////////////////////////
+from pymongo import MongoClient
+client=MongoClient('localhost',27017)
+db=client.travel
+collection=db.customers
+#print(collection.find_one())
+cursor=collection.find({})
+for document in cursor:
+    print(document)
+
+
+//////////////////////////////////
+from pymongo import MongoClient
+client = MongoClient('localhost', 27017)
+db=client.test
+collection=db.test1
+
+mylist = [{"name":"Amy","address":"Apple st 652"},{"name":"Hannah","address":"Mountain 21"}]
+
+
+x = collection.insert_many(mylist)
+print(mylist)
+
+
+
+/////////////////////////
